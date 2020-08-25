@@ -31,6 +31,7 @@ const SearchResult = () => {
     const debounceSearch = useDebounce(keyword, 350);
 
     useEffect(() => {
+        setLimitItems(DEFAULT_ITEM);
         dispatch(searchImages(debounceSearch));
     }, [debounceSearch])
 
