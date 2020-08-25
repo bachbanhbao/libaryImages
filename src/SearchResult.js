@@ -34,7 +34,6 @@ const SearchResult = () => {
                 return obj;
             });
             setLstImgFilter(tmp);
-            localStorage.setItem('filter_data', JSON.stringify(tmp));
         }
     }, [lstDataSearch]);
     
@@ -56,7 +55,6 @@ const SearchResult = () => {
         setLstImgFilter(lstImgFilter);
         dispatch(addFavorite([...dataImgFavorites, item]));
         localStorage.setItem('favorite_data', JSON.stringify([...dataImgFavorites, item]));
-        localStorage.setItem('filter_data', lstImgFilter);
     }
 
     return (

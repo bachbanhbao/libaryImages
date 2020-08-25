@@ -23,9 +23,11 @@ const FavoriteImages = () => {
     }
 
     useEffect(()=> {
-        if (dataImgFavorites.length === 0) {
-            const localFavoriteData = localStorage.getItem('favorite_data') != null ? localStorage.getItem('favorite_data') : [];
-            ///dispatch(addFavorite(JSON.parse(localFavoriteData)));
+        if (dataImgFavorites.length === 0 && localStorage.getItem('favorite_data') != null) {
+            let localFavoriteData = JSON.parse(localStorage.getItem('favorite_data'));
+            if (localFavoriteData.length) {
+                dispatch(addFavorite(localFavoriteData));
+            }
         }
     }, [dataImgFavorites])
 

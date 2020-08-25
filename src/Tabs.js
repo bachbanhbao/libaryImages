@@ -56,11 +56,11 @@ export default function SimpleTabs() {
     const { dataImgFavorites } = useSelector(state => state.libImage);
 
     useEffect(()=> {
-        if (dataImgFavorites.length === 0) {
-            const localFavoriteData = localStorage.getItem('favorite_data') != null ? localStorage.getItem('favorite_data') : '[]';
-            // localFavoriteData = JSON.parse(localFavoriteData);
-            // console.log(localFavoriteData)
-            // localFavoriteData.length > 0 ? dispatch(addFavorite([])) : '';
+        if (dataImgFavorites.length === 0 && localStorage.getItem('favorite_data') !== null) {
+            let localFavoriteData = JSON.parse(localStorage.getItem('favorite_data'));
+            if (localFavoriteData.length) {
+                dispatch(addFavorite(localFavoriteData));
+            }
         }
     }, [dataImgFavorites])
 
