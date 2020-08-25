@@ -1,0 +1,68 @@
+.app__header {
+    height: 50px;
+    width: 100%;
+    background-color: gray;
+}
+
+.app__header-logo img {
+    height: 50px;
+    width: auto;
+}
+
+.app__search {
+    width: 1080px;
+    margin: auto;
+}
+
+.app__search-textbox {
+    width: 980px;
+    margin: auto;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.app__grid-item {
+    overflow: hidden;
+}
+
+.app__img-item {
+    cursor: pointer;
+}
+
+.app__search-result {
+    text-align: center;
+}
+
+.app__img-item {
+    position: relative;
+}
+
+.MuiSvgIcon-root.icon-favorite-unlike {
+    position: absolute;
+    bottom: 10px;
+    display: none;
+    right: 10px;
+    color: lightpink;
+}
+
+.app__grid-item:hover .MuiSvgIcon-root.icon-favorite-unlike {
+    display: block;
+}
+
+.icon-favorite-like {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: crimson;
+}
+
+.MuiButton-root.btn_loadmore {
+    margin-top: 15px;
+}
+
+.app__favorite-result {
+    margin-top: 15px;
+    text-align: center;
+}
