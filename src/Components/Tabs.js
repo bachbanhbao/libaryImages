@@ -5,7 +5,7 @@ import { makeStyles, Paper, Tabs, Tab, Container, Box } from '@material-ui/core'
 import { Favorite, Search } from '@material-ui/icons';
 import SearchResult from './SearchResult';
 import FavoriteImages from './FavoriteImages';
-import { addFavorite } from './app.actions';
+import { addFavorite } from '../Redux/Actions/app.actions';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

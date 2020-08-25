@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Grid, TextField , makeStyles, FormControl, Button } from '@material-ui/core';
-import { Search, ExpandMore } from '@material-ui/icons';
+import { ExpandMore } from '@material-ui/icons';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import { searchImages, addFavorite } from './app.actions';
+import { searchImages, addFavorite } from '../Redux/Actions/app.actions';
+import { useDebounce } from '../Common/useDebounce';
+import Notification from '../Common/NotificationMess';
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -12,6 +14,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const DEFAULT_ITEM = 8;
+const mess = "Add Image Favorite Sucessfully";
 
 const SearchResult = () => {
     const classes = useStyles();
@@ -21,11 +24,15 @@ const SearchResult = () => {
 
     const [keyword, setKeyWord] = useState('');
     const [lstImgFilter, setLstImgFilter] = useState([]);
+    const [open, setOpen] = useState(false);
     
     const [limitItems, setLimitItems] = useState(DEFAULT_ITEM);
     const [disableBtn, setDisableBtn] = useState(false);
+    const debounceSearch = useDebounce(keyword, 350);
 
-    console.log(dataImgFavorites);
+    useEffect(() => {
+        dispatch(searchImages(debounceSearch));
+    }, [debounceSearch])
 
     useEffect(()=> {
         if (lstDataSearch.length) {
@@ -36,10 +43,6 @@ const SearchResult = () => {
             setLstImgFilter(tmp);
         }
     }, [lstDataSearch]);
-    
-    const handleChangeTextboxSearch = () => {
-        dispatch(searchImages(keyword));
-    }
 
     const loadMore = () => {
         const newValue = limitItems + 8;
@@ -50,6 +53,7 @@ const SearchResult = () => {
     }
 
     const handleAddFavorite = (index) => {
+        setOpen(true);
         const item = lstImgFilter[index];
         lstImgFilter.splice(index, 1);
         setLstImgFilter(lstImgFilter);
@@ -59,6 +63,7 @@ const SearchResult = () => {
 
     return (
         <div className="app__search">
+           <Notification {...{open, setOpen, mess}}/>
             <div className="app__search-textbox">
                 <Grid container spacing={2}>
                     <Grid item xs>
@@ -70,11 +75,6 @@ const SearchResult = () => {
                                 label="Start searching for images"
                             >
                             </TextField>
-                            <Button variant='outlined' size='small' color='default'
-                                startIcon={<Search/>}
-                                onClick={handleChangeTextboxSearch}>
-                                Search
-                            </Button>
                         </FormControl>
                     </Grid>
                 </Grid>

@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Tabs from './Tabs';
+import Tabs from './Components/Tabs';
 
 
 const App = () => {

@@ -1,4 +1,4 @@
-import { SET_DATA_IMG, SET_FAVORITE } from '../../../app.actions';
+import { SET_DATA_IMG, SET_FAVORITE } from '../../Actions/app.actions';
 
 const INITIAL_STATE = {
     lstDataSearch: [],
